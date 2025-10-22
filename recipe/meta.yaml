@@ -14,6 +14,8 @@ build:
     - echo __version__ = "{{ version }}" > pysjef/pysjef/_version.py  # [win]
     - cmake -LAH -DBUILD_PROGRAM=OFF -DBUILD_DOCUMENTATION=OFF -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% -B cmake-build .  # [win]
     - echo LIBRARY_PREFIX=%LIBRARY_PREFIX%  # [win]
+    - set "LIBRARY_PREFIX=%LIBRARY_PREFIX:\=/%"  # [win]
+    - echo LIBRARY_PREFIX=%LIBRARY_PREFIX%  # [win]
     - cmake --build cmake-build --config Release --target install  # [win]
     - cd pysjef  # [win]
     - {{ PYTHON }} -m pip install . -vv  # [win]
@@ -23,7 +25,7 @@ build:
     - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py  # [unix]
     - cd pysjef && {{ PYTHON }} -m pip install . -vv  # [unix]
     - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)  # [unix]
-  number: 0
+  number: 1
 
 requirements:
   build:
