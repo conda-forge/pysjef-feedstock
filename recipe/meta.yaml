@@ -18,6 +18,8 @@ build:
     - echo LIBRARY_PREFIX=%LIBRARY_PREFIX%  # [win]
     - cmake --build cmake-build --config Release --target install  # [win]
     - cd pysjef  # [win]
+    - set SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}  # [win]
+    - set SETUPTOOLS_SCM_PRETEND_VERSION_FOR_PYSJEF={{ version }}  # [win]
     - set SETUPTOOLS_SCM_PRETEND_VERSION_FOR_pysjef={{ version }}  # [win]
     - echo SETUPTOOLS_SCM_PRETEND_VERSION_FOR_pysjef=%SETUPTOOLS_SCM_PRETEND_VERSION_FOR_pysjef%  # [win]
     - {{ PYTHON }} -m pip install . -vv  # [win]
@@ -32,7 +34,7 @@ build:
     - export SETUPTOOLS_SCM_DEBUG=1  # [unix]
     - cd pysjef && {{ PYTHON }} -m pip install . -vv  # [unix]
     - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)  # [unix]
-  number: 2
+  number: 3
 
 requirements:
   build:
