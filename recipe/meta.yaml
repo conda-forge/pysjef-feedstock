@@ -12,8 +12,8 @@ source:
 build:
   script:
     - echo __version__ = "{{ version }}" > pysjef/pysjef/_version.py  # [win]
-    - cmake -LAH -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=%PREFIX% -DCMAKE_INSTALL_INCLUDEDIR=%PREFIX%\include  -DCMAKE_INSTALL_LIBDIR=%PREFIX%\Library\lib -B cmake-build .  # [win]
-    - echo PREFIX=%PREFIX% # [win]
+    - cmake -LAH -DBUILD_PROGRAM=OFF -DBUILD_DOCUMENTATION=OFF -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% -B cmake-build .  # [win]
+    - echo LIBRARY_PREFIX=%LIBRARY_PREFIX%  # [win]
     - cmake --build cmake-build --config Release --target install  # [win]
     - cd pysjef  # [win]
     - {{ PYTHON }} -m pip install . -vv  # [win]
