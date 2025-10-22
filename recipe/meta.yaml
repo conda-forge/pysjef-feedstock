@@ -1,5 +1,5 @@
 {% set name = "pysjef" %}
-{% set version = "1.42.1" %}
+{% set version = "1.42.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,13 @@ package:
 
 source:
   url: https://github.com/molpro/sjef/archive/refs/tags//{{ version }}.tar.gz
-  sha256: 7c1f73e9ff823f146ef5f5552d1a23ceabfdfdc61c607404db79f98030c10e1c
+  sha256: 4491278d96ba33d578ff6f82ce14d4909b6a989a7df5cc15020f656dc633fa93
 
 build:
   script:
     - echo __version__ = "{{ version }}" > pysjef/pysjef/_version.py  # [win]
-    - cmake -LAH -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=%PREFIX% -DCMAKE_INSTALL_INCLUDEDIR=%PREFIX%\include  -DCMAKE_INSTALL_LIBDIR=%PREFIX%\Library\lib -B cmake-build .  # [win]
+    - cmake -LAH -DBUILD_PROGRAM=OFF -DBUILD_DOCUMENTATION=OFF -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% -B cmake-build .  # [win]
+    - echo LIBRARY_PREFIX=%LIBRARY_PREFIX%  # [win]
     - cmake --build cmake-build --config Release --target install  # [win]
     - cd pysjef  # [win]
     - {{ PYTHON }} -m pip install . -vv  # [win]
