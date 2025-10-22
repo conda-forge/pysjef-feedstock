@@ -25,9 +25,11 @@ build:
     - cmake -B cmake-build . -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$PREFIX  # [arm64 or linux]
     - cmake --build cmake-build -t install  # [unix]
     - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py  # [unix]
-    - export SETUPTOOLS_SCM_PRETEND_VERSION_FOR_pysjef={{ version }}
+    - export SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}  # [unix]
+    - export SETUPTOOLS_SCM_PRETEND_VERSION_FOR_PYSJEF={{ version }}  # [unix]
+    - export SETUPTOOLS_SCM_PRETEND_VERSION_FOR_pysjef={{ version }}  # [unix]
     - echo SETUPTOOLS_SCM_PRETEND_VERSION_FOR_pysjef=$SETUPTOOLS_SCM_PRETEND_VERSION_FOR_pysjef  # [unix]
-    - export SETUPTOOLS_SCM_DEBUG=1
+    - export SETUPTOOLS_SCM_DEBUG=1  # [unix]
     - cd pysjef && {{ PYTHON }} -m pip install . -vv  # [unix]
     - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)  # [unix]
   number: 2
