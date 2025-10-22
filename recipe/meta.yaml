@@ -18,14 +18,15 @@ build:
     - echo LIBRARY_PREFIX=%LIBRARY_PREFIX%  # [win]
     - cmake --build cmake-build --config Release --target install  # [win]
     - cd pysjef  # [win]
+    - set SETUPTOOLS_SCM_PRETEND_VERSION_FOR_pysjef={{ version}}  # [win]
     - {{ PYTHON }} -m pip install . -vv  # [win]
     - CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY -DBOOST_ASIO_DISABLE_STD_ALIGNED_ALLOC" cmake -B cmake-build . -DCMAKE_INSTALL_PREFIX=$PREFIX  # [osx and x86]
     - cmake -B cmake-build . -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$PREFIX  # [arm64 or linux]
     - cmake --build cmake-build -t install  # [unix]
     - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py  # [unix]
-    - cd pysjef && {{ PYTHON }} -m pip install . -vv  # [unix]
+    - cd pysjef && SETUPTOOLS_SCM_PRETEND_VERSION_FOR_pysjef={{ version}} {{ PYTHON }} -m pip install . -vv  # [unix]
     - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)  # [unix]
-  number: 1
+  number: 2
 
 requirements:
   build:
