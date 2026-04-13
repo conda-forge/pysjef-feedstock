@@ -6,8 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/molpro/sjef/archive/refs/tags//{{ version }}.tar.gz
-  sha256: 
+  url: https://github.com/molpro/sjef/archive/refs/tags/{{ version }}.tar.gz
+  sha256: 267abf5b924116bd8333b8e452bd138a86ffd5496bc79e3a465af958c7813345
 
 build:
   script:
