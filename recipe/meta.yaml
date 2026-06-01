@@ -34,7 +34,7 @@ build:
     - export SETUPTOOLS_SCM_DEBUG=1  # [unix]
     - cd pysjef && {{ PYTHON }} -m pip install . -vv  # [unix]
     - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)  # [unix]
-  number: 0
+  number: 1
 
 requirements:
   build:
