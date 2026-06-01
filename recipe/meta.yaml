@@ -51,7 +51,7 @@ requirements:
   host:
     - python
     - pip
-    - libboost-devel
+    - libboost-devel ==1.88
     - pugixml >=1.10
     - cython >=3.0
     - setuptools
