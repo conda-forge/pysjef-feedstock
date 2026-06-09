@@ -17,7 +17,7 @@ build:
     - echo LIBRARY_PREFIX=%LIBRARY_PREFIX%  # [win]
     - set "LIBRARY_PREFIX=%LIBRARY_PREFIX:\=/%"  # [win]
     - echo LIBRARY_PREFIX=%LIBRARY_PREFIX%  # [win]
-#    - cmake --build cmake-build --config Release --target install  # [win]
+    - cmake --build cmake-build --config Release --target install  # [win]
     - cd pysjef  # [win]
     - set SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}  # [win]
     - set SETUPTOOLS_SCM_PRETEND_VERSION_FOR_PYSJEF={{ version }}  # [win]
@@ -26,7 +26,7 @@ build:
     - {{ PYTHON }} -m pip install . -vv  # [win]
     - CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY -DBOOST_ASIO_DISABLE_STD_ALIGNED_ALLOC" cmake -B cmake-build . -DCMAKE_INSTALL_PREFIX=$PREFIX  # [osx and x86]
     - cmake -B cmake-build . -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$PREFIX  # [arm64 or linux]
-#    - cmake --build cmake-build -t install  # [unix]
+    - cmake --build cmake-build -t install  # [unix]
     - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py  # [unix]
     - export SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}  # [unix]
     - export SETUPTOOLS_SCM_PRETEND_VERSION_FOR_PYSJEF={{ version }}  # [unix]
@@ -47,6 +47,7 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake >=3.14
     - make
+    - libboost
     - setuptools-scm >=8.1
     - setuptools >=64
   host:
