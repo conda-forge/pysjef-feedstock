@@ -52,7 +52,7 @@ requirements:
   host:
     - python
     - pip
-    - libboost-header
+    - libboost-headers
     - pugixml >=1.10
     - cython >=3.0
     - setuptools
