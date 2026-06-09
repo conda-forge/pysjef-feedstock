@@ -47,7 +47,6 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake >=3.14
     - make
-    - libboost
     - setuptools-scm >=8.1
     - setuptools >=64
   host:
