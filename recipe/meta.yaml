@@ -13,7 +13,7 @@ source:
 build:
   script:
     - echo __version__ = "{{ version }}" > pysjef/pysjef/_version.py  # [win]
-    - cmake -LAH -DBUILD_PROGRAM=OFF -DBUILD_DOCUMENTATION=OFF -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% -B cmake-build .  # [win]
+    - cmake -LAH -DCPPFLAGS=-DBOOST_ALL_NO_LIB -DBUILD_PROGRAM=OFF -DBUILD_DOCUMENTATION=OFF -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% -B cmake-build .  # [win]
     - echo LIBRARY_PREFIX=%LIBRARY_PREFIX%  # [win]
     - set "LIBRARY_PREFIX=%LIBRARY_PREFIX:\=/%"  # [win]
     - echo LIBRARY_PREFIX=%LIBRARY_PREFIX%  # [win]
