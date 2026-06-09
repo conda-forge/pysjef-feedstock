@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/molpro/sjef/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 
+  sha256: 79a5a2afe0495ee5c8f5aa931be8b681fafba1f58fa5326137600af25ebac304
 
 
 build:
