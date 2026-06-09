@@ -23,6 +23,7 @@ build:
     - set SETUPTOOLS_SCM_PRETEND_VERSION_FOR_PYSJEF={{ version }}  # [win]
     - set SETUPTOOLS_SCM_PRETEND_VERSION_FOR_pysjef={{ version }}  # [win]
     - echo SETUPTOOLS_SCM_PRETEND_VERSION_FOR_pysjef=%SETUPTOOLS_SCM_PRETEND_VERSION_FOR_pysjef%  # [win]
+    - {{ PYTHON }} -m pip install libboost -vv  # [win]
     - {{ PYTHON }} -m pip install . -vv  # [win]
     - CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY -DBOOST_ASIO_DISABLE_STD_ALIGNED_ALLOC" cmake -B cmake-build . -DCMAKE_INSTALL_PREFIX=$PREFIX  # [osx and x86]
     - cmake -B cmake-build . -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$PREFIX  # [arm64 or linux]
