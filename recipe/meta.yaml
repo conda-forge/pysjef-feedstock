@@ -1,5 +1,5 @@
 {% set name = "pysjef" %}
-{% set version = "1.44.7" %}
+{% set version = "1.45.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/molpro/sjef/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 9cc31a9905e3a49df4aaf3a9baec9caf7ab89933e0f03310f93efe9fd842267a
+  sha256: 1e952b283f87d428735a01fb5f030cc5a06805979301d5ba07f783b7ae1c96ab
 
 
 build:
@@ -35,7 +35,7 @@ build:
     - export SETUPTOOLS_SCM_DEBUG=1  # [unix]
     - cd pysjef && {{ PYTHON }} -m pip install . -vv  # [unix]
     - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)  # [unix]
-  number: 1
+  number: 0
 
 requirements:
   build:
