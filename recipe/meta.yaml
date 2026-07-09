@@ -31,6 +31,7 @@ requirements:
     - setuptools >=64
     - libboost-headers >=1.88
     - pugixml >=1.10
+    - libboost-headers >=1.88
 
   host:
     - python
