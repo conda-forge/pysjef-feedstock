@@ -40,6 +40,8 @@ requirements:
     - cython >=3.0
     - setuptools
     - setuptools-scm >=8.1
+    - scikit-build-core >=0.10      # <<< ADDED: PEP 517 build backend required by pyproject.toml
+    # - scikit-build              # optional: add only if build logs later complain it is missing
   run:
     - python
     - lxml >=4.0
