@@ -1,5 +1,5 @@
 {% set name = "pysjef" %}
-{% set version = "1.45.3" %}
+{% set version = "1.45.7" %}
 
 package:
   name: {{ name|lower }}
@@ -7,55 +7,44 @@ package:
 
 source:
   url: https://github.com/molpro/sjef/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 6778741b91638813543907dc5e74cbbe624d7fec45bce641f21c676dd676e1e1
+  sha256: 079182dce5945eec596eb5fe857471ee074ff0c241f6619ef5b7600b7e0dacbc
 
 
 build:
   script:
-    - echo __version__ = "{{ version }}" > pysjef/pysjef/_version.py  # [win]
-    - cmake -LAH -DBUILD_PROGRAM=OFF -DBUILD_DOCUMENTATION=OFF -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% -B cmake-build .  # [win]
-    - echo LIBRARY_PREFIX=%LIBRARY_PREFIX%  # [win]
-    - set "LIBRARY_PREFIX=%LIBRARY_PREFIX:\=/%"  # [win]
-    - echo LIBRARY_PREFIX=%LIBRARY_PREFIX%  # [win]
-    - cmake --build cmake-build --config Release --target install  # [win]
-    - cd pysjef  # [win]
-    - set SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}  # [win]
-    - set SETUPTOOLS_SCM_PRETEND_VERSION_FOR_PYSJEF={{ version }}  # [win]
-    - set SETUPTOOLS_SCM_PRETEND_VERSION_FOR_pysjef={{ version }}  # [win]
-    - echo SETUPTOOLS_SCM_PRETEND_VERSION_FOR_pysjef=%SETUPTOOLS_SCM_PRETEND_VERSION_FOR_pysjef%  # [win]
-    - {{ PYTHON }} -m pip install . -vv  # [win]
-    - CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY -DBOOST_ASIO_DISABLE_STD_ALIGNED_ALLOC" cmake -B cmake-build . -DCMAKE_INSTALL_PREFIX=$PREFIX  # [osx and x86]
-    - cmake -B cmake-build . -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$PREFIX  # [arm64 or linux]
-    - cmake --build cmake-build -t install  # [unix]
-    - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py  # [unix]
     - export SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}  # [unix]
-    - export SETUPTOOLS_SCM_PRETEND_VERSION_FOR_PYSJEF={{ version }}  # [unix]
-    - export SETUPTOOLS_SCM_PRETEND_VERSION_FOR_pysjef={{ version }}  # [unix]
-    - echo SETUPTOOLS_SCM_PRETEND_VERSION_FOR_pysjef=$SETUPTOOLS_SCM_PRETEND_VERSION_FOR_pysjef  # [unix]
-    - export SETUPTOOLS_SCM_DEBUG=1  # [unix]
-    - cd pysjef && {{ PYTHON }} -m pip install . -vv  # [unix]
-    - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)  # [unix]
+    - set "SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}"  # [win]
+    - {{ PYTHON }} -m pip install .
   number: 0
 
 requirements:
   build:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - cython >=3.0                                 # [build_platform != target_platform]
+    - cython >=3.0
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - cmake >=3.14
     - make
+    - pkg-config
     - setuptools-scm >=8.1
     - setuptools >=64
+    - libboost-headers >=1.85
+    - libboost-devel
+    - pugixml >=1.10
+
   host:
     - python
     - pip
-    - libboost-headers
+    - libboost-headers >=1.85
+    - libboost-devel
     - pugixml >=1.10
     - cython >=3.0
     - setuptools
+    - setuptools-scm >=8.1
+    - scikit-build-core >=0.10      # <<< ADDED: PEP 517 build backend required by pyproject.toml
+    - scikit-build              # optional: add only if build logs later complain it is missing
   run:
     - python
     - lxml >=4.0
