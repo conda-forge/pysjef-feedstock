@@ -14,7 +14,6 @@ build:
   script:
     - export SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}  # [unix]
     - {{ PYTHON }} -m pip install .
-    - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt 2>/dev/null || true)  # [unix]
   number: 0
 
 requirements:
