@@ -26,6 +26,7 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake >=3.14
     - make
+    - pkg-config
     - setuptools-scm >=8.1
     - setuptools >=64
 
@@ -36,6 +37,7 @@ requirements:
     - pugixml >=1.10
     - cython >=3.0
     - setuptools
+    - setuptools-scm >=8.1
   run:
     - python
     - lxml >=4.0
