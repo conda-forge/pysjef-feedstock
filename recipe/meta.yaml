@@ -31,14 +31,14 @@ requirements:
     - setuptools-scm >=8.1
     - setuptools >=64
     - libboost-headers >=1.85
-    - boost-cpp
+    - libboost-devel
     - pugixml >=1.10
 
   host:
     - python
     - pip
     - libboost-headers >=1.85
-    - boost-cpp
+    - libboost-devel
     - pugixml >=1.10
     - cython >=3.0
     - setuptools
