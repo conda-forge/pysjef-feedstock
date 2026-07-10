@@ -15,7 +15,7 @@ build:
     - export SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}  # [unix]
     - set "SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}"  # [win]
     - {{ PYTHON }} -m pip install .
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -38,7 +38,6 @@ requirements:
     - python
     - pip
     - libboost-headers >=1.85
-    - libboost-devel
     - pugixml >=1.10
     - cython >=3.0
     - setuptools
