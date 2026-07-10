@@ -31,7 +31,7 @@ requirements:
     - setuptools-scm >=8.1
     - setuptools >=64
     - libboost-headers >=1.85
-    - boost-devel
+    - libboost-devel
     - pugixml >=1.10
 
   host:
