@@ -1,5 +1,5 @@
 {% set name = "pysjef" %}
-{% set version = "1.45.8" %}
+{% set version = "1.45.9" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/molpro/sjef/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 41e08cbe2eb7bc2591e2878a0b423b74d09b0e40b5b933100cbb02c648287a3e
+  sha256: fdf89a7b2d26e3148677ec357892b5490653237bd8bd81251590def4c3466125
 
 
 build:
@@ -18,7 +18,7 @@ build:
     - git clone --depth 1 https://github.com/molpro/cwrsync %TEMP%\cwrsync  # [win]
     - robocopy %TEMP%\cwrsync %LIBRARY_PREFIX%\rsync /E /XD .git  # [win]
     - if %ERRORLEVEL% GEQ 8 exit /b 1  # [win]
-  number: 2
+  number: 0
 
 requirements:
   build:
