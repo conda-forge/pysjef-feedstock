@@ -18,7 +18,7 @@ build:
     - git clone --depth 1 https://github.com/molpro/cwrsync %TEMP%\cwrsync  # [win]
     - robocopy %TEMP%\cwrsync %LIBRARY_PREFIX%\rsync /E /XD .git  # [win]
     - if %ERRORLEVEL% GEQ 8 exit /b 1  # [win]
-  number: 2
+  number: 0
 
 requirements:
   build:
